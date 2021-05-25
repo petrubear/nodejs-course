@@ -3,15 +3,13 @@ const chalk = require('chalk')
 const notesFile = 'notes.json'
 const log = console.log
 
-const getNotes = function () {
+const getNotes = () => {
     return 'your notes...'
 }
 
-const addNote = function (title, body) {
+const addNote = (title, body) => {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(function (note) {
-        return note.title === title
-    })
+    const duplicateNotes = notes.filter((note) => note.title === title)
 
     if (duplicateNotes.length === 0) {
         notes.push({
@@ -26,12 +24,12 @@ const addNote = function (title, body) {
     }
 }
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
     const notesJson = JSON.stringify(notes)
     fs.writeFileSync(notesFile, notesJson)
 }
 
-const loadNotes = function () {
+const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync(notesFile)
         const dataJson = dataBuffer.toString()
@@ -41,19 +39,15 @@ const loadNotes = function () {
     }
 }
 
-const removeNote = function (title) {
+const removeNote = (title) => {
     log(chalk.blue('removing note with title ', title))
     const notes = loadNotes()
-    const uniqueNotes = notes.filter(function (note) {
-        return note.title !== title
-    })
-
+    const uniqueNotes = notes.filter((note) => note.title !== title)
     if (uniqueNotes.length === notes.length) {
         log(chalk.red('No notes removed'))
     } else {
         log(chalk.green('Note removed: ', title))
     }
-
     saveNotes(uniqueNotes)
 }
 
