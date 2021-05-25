@@ -46,7 +46,7 @@ yargs.command({
     command: 'list',
     describe: 'list existing notes',
     handler () {
-        log(chalk.green('listing notes'))
+        notes.listNotes()
     }
 })
 

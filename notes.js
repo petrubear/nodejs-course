@@ -25,6 +25,7 @@ const addNote = (title, body) => {
 }
 
 const saveNotes = (notes) => {
+    log(chalk.blue('Saving Notes'))
     const notesJson = JSON.stringify(notes)
     fs.writeFileSync(notesFile, notesJson)
 }
@@ -51,8 +52,17 @@ const removeNote = (title) => {
     saveNotes(uniqueNotes)
 }
 
+const listNotes = () => {
+    log(chalk.blue('Listing Notes'))
+    const notes = loadNotes()
+    notes.forEach(note => {
+        log(' - ' + note.title)
+    })
+}
+
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    listNotes: listNotes
 }
