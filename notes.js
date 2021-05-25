@@ -41,7 +41,24 @@ const loadNotes = function () {
     }
 }
 
+const removeNote = function (title) {
+    log(chalk.blue('removing note with title ', title))
+    const notes = loadNotes()
+    const uniqueNotes = notes.filter(function (note) {
+        return note.title !== title
+    })
+
+    if (uniqueNotes.length === notes.length) {
+        log(chalk.red('No notes removed'))
+    } else {
+        log(chalk.green('Note removed: ', title))
+    }
+
+    saveNotes(uniqueNotes)
+}
+
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 }
