@@ -3,10 +3,6 @@ const chalk = require('chalk')
 const notesFile = 'notes.json'
 const log = console.log
 
-const getNotes = () => {
-    return 'your notes...'
-}
-
 const addNote = (title, body) => {
     const notes = loadNotes()
     // const duplicateNotes = notes.filter((note) => note.title === title)
@@ -62,9 +58,21 @@ const listNotes = () => {
     })
 }
 
+const readNote = (title) => {
+    log(chalk.blue('Reading Notes'))
+    const notes = loadNotes()
+    const actualNote = notes.find((note) => note.title === title)
+    if (actualNote) {
+        log(chalk.green(actualNote.title))
+        log(chalk.gray(actualNote.body))
+    } else {
+        log(chalk.red('Note not found: ', title))
+    }
+}
+
 module.exports = {
-    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
-    listNotes: listNotes
+    listNotes: listNotes,
+    readNote: readNote
 }
