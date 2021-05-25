@@ -3,10 +3,10 @@ const yargs = require('yargs')
 const notes = require('./notes.js')
 const log = console.log
 
-//customize yargs version
+// customize yargs version
 yargs.version('0.0.1')
 
-//yargs commands
+// yargs commands
 yargs.command({
     command: 'add',
     describe: 'add new note',

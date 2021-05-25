@@ -39,7 +39,6 @@ const loadNotes = function () {
     } catch (e) {
         return []
     }
-
 }
 
 module.exports = {
