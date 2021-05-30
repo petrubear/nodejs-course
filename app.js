@@ -1,7 +1,21 @@
 // http://api.weatherstack.com/current?access_key=eb1cdbf17f681c6c8adb31928e8f4a63&query=Quito
 const log = console.log
-const request = require('postman-request')
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
 
+
+geocode('Quito', (error, data) => {
+    log('Error', error)
+    log('Data', data)
+})
+
+forecast(-75.7088, 44.1545, (error, data) => {
+    console.log('Error', error)
+    console.log('Data', data)
+})
+
+// without callbacks
+/*
 const url = "http://api.weatherstack.com/current?access_key=eb1cdbf17f681c6c8adb31928e8f4a63&units=m&query=37.8,-122"
 request({ url: url, json: true }, (error, response) => {
     if (error) {
@@ -18,9 +32,10 @@ request({ url: url, json: true }, (error, response) => {
         log(message)
     }
 })
-
+*/
 
 // Gecocoding
+/*
 const geocoding_url = "https://api.mapbox.com/geocoding/v5/mapbox.places/Quito.json?access_token=pk.eyJ1IjoicGV0cnViZWFyIiwiYSI6ImNrcGJnYnZkaDBvbTIzMG4ycHdwN3UxemUifQ.E3ns5TUxlzhZLLCYIEYcLA&limit=1"
 request({ url: geocoding_url, json: true }, (error, response) => {
     if (error) {
@@ -38,3 +53,5 @@ request({ url: geocoding_url, json: true }, (error, response) => {
         log("Longitude: " + longitude + " Latitude: " + latitude)
     }
 })
+*/
+
