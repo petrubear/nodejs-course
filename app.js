@@ -3,16 +3,28 @@ const log = console.log
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
+const argumets = process.argv.length
 
-geocode('Quito', (error, data) => {
-    log('Error', error)
-    log('Data', data)
-})
+if (argumets === 3) {
+    const location = process.argv[2]
+    geocode(location, (error, data) => {
+        if (error) {
+            return log('Error', error)
+        }
 
-forecast(-75.7088, 44.1545, (error, data) => {
-    console.log('Error', error)
-    console.log('Data', data)
-})
+        forecast(data.longitude, data.latitude, (error, forecastData) => {
+            if (error) {
+                return console.log('Error', error)
+            }
+
+            console.log(data.location)
+            console.log(forecastData.weather)
+        })
+    })
+} else {
+    log('Proveer una ciudad como argumento, ej: Quito, "Los Angeles."')
+}
+
 
 // without callbacks
 /*
