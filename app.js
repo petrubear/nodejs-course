@@ -7,17 +7,19 @@ const argumets = process.argv.length
 
 if (argumets === 3) {
     const location = process.argv[2]
-    geocode(location, (error, data) => {
+    // si hay un error no se genera el segundo parametro
+    // por lo que necesito valor por defecto con = {}
+    geocode(location, (error, {longitude, latitude, location} = {}) => {
         if (error) {
             return log('Error', error)
         }
 
-        forecast(data.longitude, data.latitude, (error, forecastData) => {
+        forecast(longitude, latitude, (error, forecastData) => {
             if (error) {
                 return console.log('Error', error)
             }
 
-            console.log(data.location)
+            console.log(location)
             console.log(forecastData.weather)
         })
     })
