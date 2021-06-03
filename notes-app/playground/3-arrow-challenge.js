@@ -8,17 +8,17 @@
 const tasks = {
     tasks: [{
         text: 'Grocery shopping',
-        completed: true
+        completed: true,
     }, {
         text: 'Clean yard',
-        completed: false
+        completed: false,
     }, {
         text: 'Film course',
-        completed: false
+        completed: false,
     }],
-    getTasksToDo () {
-        return this.tasks.filter(x => x.completed === false)
-    }
-}
+    getTasksToDo() {
+        return this.tasks.filter((x) => x.completed === false);
+    },
+};
 
-console.log(tasks.getTasksToDo())
+console.log(tasks.getTasksToDo());

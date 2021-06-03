@@ -1,8 +1,8 @@
-const yargs = require('yargs')
-const notes = require('./notes.js')
+const yargs = require('yargs');
+const notes = require('./notes.js');
 
 // customize yargs version
-yargs.version('0.0.2')
+yargs.version('0.0.2');
 
 // yargs commands
 yargs.command({
@@ -12,18 +12,18 @@ yargs.command({
         title: {
             describe: 'Note title',
             demandOption: true,
-            type: 'string'
+            type: 'string',
         },
         body: {
             describe: 'Note body',
             demandOption: true,
-            type: 'string'
-        }
+            type: 'string',
+        },
     },
-    handler (argv) {
-        notes.addNote(argv.title, argv.body)
-    }
-})
+    handler(argv) {
+        notes.addNote(argv.title, argv.body);
+    },
+});
 
 yargs.command({
     command: 'remove',
@@ -32,21 +32,21 @@ yargs.command({
         title: {
             describe: 'Note title',
             demandOption: true,
-            type: 'string'
-        }
+            type: 'string',
+        },
     },
-    handler (argv) {
-        notes.removeNote(argv.title)
-    }
-})
+    handler(argv) {
+        notes.removeNote(argv.title);
+    },
+});
 
 yargs.command({
     command: 'list',
     describe: 'list existing notes',
-    handler () {
-        notes.listNotes()
-    }
-})
+    handler() {
+        notes.listNotes();
+    },
+});
 
 yargs.command({
     command: 'read',
@@ -55,12 +55,12 @@ yargs.command({
         title: {
             describe: 'Note title',
             demandOption: true,
-            type: 'string'
-        }
+            type: 'string',
+        },
     },
-    handler: function (argv) {
-        notes.readNote(argv.title)
-    }
-})
+    handler: function(argv) {
+        notes.readNote(argv.title);
+    },
+});
 
-yargs.parse()
+yargs.parse();

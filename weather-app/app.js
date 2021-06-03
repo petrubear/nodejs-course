@@ -1,30 +1,30 @@
 // http://api.weatherstack.com/current?access_key=eb1cdbf17f681c6c8adb31928e8f4a63&query=Quito
-const log = console.log
-const geocode = require('./utils/geocode')
-const forecast = require('./utils/forecast')
+const log = console.log;
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
-const argumets = process.argv.length
+const argumets = process.argv.length;
 
 if (argumets === 3) {
-    const location = process.argv[2]
+    const location = process.argv[2];
     // si hay un error no se genera el segundo parametro
     // por lo que necesito valor por defecto con = {}
     geocode(location, (error, {longitude, latitude, location} = {}) => {
         if (error) {
-            return log('Error', error)
+            return log('Error', error);
         }
 
         forecast(longitude, latitude, (error, forecastData) => {
             if (error) {
-                return console.log('Error', error)
+                return console.log('Error', error);
             }
 
-            console.log(location)
-            console.log(forecastData.weather)
-        })
-    })
+            console.log(location);
+            console.log(forecastData.weather);
+        });
+    });
 } else {
-    log('Proveer una ciudad como argumento, ej: Quito, "Los Angeles."')
+    log('Proveer una ciudad como argumento, ej: Quito, "Los Angeles."');
 }
 
 
@@ -50,6 +50,7 @@ request({ url: url, json: true }, (error, response) => {
 
 // Gecocoding
 /*
+// eslint-disable-next-line max-len
 const geocoding_url = "https://api.mapbox.com/geocoding/v5/mapbox.places/Quito.json?access_token=pk.eyJ1IjoicGV0cnViZWFyIiwiYSI6ImNrcGJnYnZkaDBvbTIzMG4ycHdwN3UxemUifQ.E3ns5TUxlzhZLLCYIEYcLA&limit=1"
 request({ url: geocoding_url, json: true }, (error, response) => {
     if (error) {

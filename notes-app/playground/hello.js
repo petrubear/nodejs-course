@@ -1,1 +1,1 @@
-console.log('welcome to the class!')
+console.log('welcome to the class!');
