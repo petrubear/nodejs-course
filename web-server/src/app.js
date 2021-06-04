@@ -1,15 +1,18 @@
 const path = require('path');
 const express = require('express');
+const hbs = require('hbs');
 
 const app = express();
 
 // ruta para recursos estaticos y hbs templates
 const staticFolder = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../templates');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 
-// hbs configuration
+// handlebars configuration
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
+hbs.registerPartials(partialsPath);
 
 // setup static folder
 app.use(express.static(staticFolder));
@@ -34,6 +37,7 @@ app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
         helpText: 'Get some help',
+        name: 'Edison',
     });
 });
 
