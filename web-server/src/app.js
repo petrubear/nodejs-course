@@ -49,6 +49,22 @@ app.get('/weather', (req, res) => {
     });
 });
 
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Edison',
+        error: 'Help page not found',
+    });
+});
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Edison',
+        error: 'Page not found',
+    });
+});
+
 // Server config
 app.listen(3000, () => {
     console.log('Server is listening on 3000');
