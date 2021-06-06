@@ -43,9 +43,16 @@ app.get('/help', (req, res) => {
 
 // app.com/weather
 app.get('/weather', (req, res) => {
-    res.send({
+    const address = req.query.address;
+    if (!address) {
+        return res.send({
+            error: 'No address provided',
+        });
+    }
+    return res.send({
         forecast: 'Nublado, 30% posibilidad de lluvia',
-        location: 'Quito, Ecuador',
+        location: 'Quito',
+        address: address,
     });
 });
 
