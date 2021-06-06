@@ -1,6 +1,9 @@
+/* eslint-disable object-curly-spacing */
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 const app = express();
 
@@ -49,10 +52,22 @@ app.get('/weather', (req, res) => {
             error: 'No address provided',
         });
     }
-    return res.send({
-        forecast: 'Nublado, 30% posibilidad de lluvia',
-        location: 'Quito',
-        address: address,
+    geocode(address, (error, { longitude, latitude, location } = {}) => {
+        if (error) {
+            return res.send({ error: error });
+        }
+
+        forecast(longitude, latitude, (error, forecastData) => {
+            if (error) {
+                return res.send({ error: error });
+            }
+
+            res.send({
+                forecast: forecastData.weather,
+                location: location,
+                address: address,
+            });
+        });
     });
 });
 
