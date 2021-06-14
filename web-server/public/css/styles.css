@@ -41,4 +41,16 @@ header a {
     flex-grow: 1;
 }
 
+input {
+    border: 1px solid #CCCCCC;
+    padding: 8px;
+}
 
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
+
+}
